@@ -1,77 +1,124 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy — AITutor</title>
-  <style>
-    body { font-family: -apple-system, sans-serif; max-width: 680px; margin: 40px auto; padding: 0 20px; color: #222; line-height: 1.7; }
-    h1 { font-size: 1.8rem; }
-    h2 { font-size: 1.1rem; margin-top: 2rem; }
-    p  { margin: 0.5rem 0; }
-    .nav { font-size: 0.9rem; color: #666; }
-    .nav a { color: #0070f3; }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AITutor — Privacy Policy</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; max-width: 760px; margin: 32px auto; padding: 0 20px; color: #1a1b47; line-height: 1.55; }
+  h1 { font-size: 28px; margin-bottom: 4px; }
+  h2 { font-size: 19px; margin-top: 32px; border-bottom: 1px solid #ECE9F7; padding-bottom: 6px; }
+  h3 { font-size: 16px; margin-top: 22px; }
+  p, li { font-size: 15px; }
+  code { background: #F2F0FA; padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+  .meta { color: #6B7299; font-size: 13px; margin-bottom: 24px; }
+  a { color: #5028D8; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 14px; }
+  th, td { border: 1px solid #ECE9F7; padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #FAFAFD; }
+</style>
 </head>
 <body>
-  <p class="nav"><a href="../">← All policies</a> · <a href="./terms.html">Terms of Service</a></p>
 
-  <h1>Privacy Policy</h1>
-  <p><strong>App:</strong> AITutor<br>
-     <strong>Developer:</strong> AZ Studio (Alona Zubenko)<br>
-     <strong>Contact:</strong> <a href="mailto:platmargo@gmail.com">platmargo@gmail.com</a><br>
-     <strong>Last updated:</strong> April 28, 2026</p>
+<h1>AITutor — Privacy Policy</h1>
+<p class="meta">Effective: 28 April 2026 · Contact: <a href="mailto:platmargo@gmail.com">platmargo@gmail.com</a></p>
 
-  <h2>1. Summary</h2>
-  <p>AITutor is a study helper that lets you photograph an educational task and receive a step-by-step explanation. The app does <strong>not</strong> have a backend server. AI processing is performed by third-party AI providers (Groq and/or Anthropic) using API keys <strong>that you supply yourself</strong>. We do not collect, store, or transmit any of your data to our own servers.</p>
+<h2>1. Summary</h2>
+<p>AITutor lets a student photograph a school or university question and receive an AI-generated explanation. The app offers three usage modes:</p>
+<ul>
+  <li><strong>Free tier</strong> — 1 question/day routed through our backend (Vercel · Frankfurt, EU + Supabase EU) so we can fairly allocate the daily allowance per device.</li>
+  <li><strong>Paid packs</strong> — additional questions purchased via Apple App Store / Google Play in-app billing. Balance is maintained on our backend.</li>
+  <li><strong>Advanced (BYO) mode</strong> — you provide your own AI provider access keys; AITutor calls the provider directly from your device. Our backend is not contacted for these requests.</li>
+</ul>
 
-  <h2>2. Data Stored Locally on Your Device</h2>
-  <p>The following information is stored on your device only (using AsyncStorage / iOS and Android secure local storage) and never uploaded to any server controlled by us:</p>
-  <ul>
-    <li>Your profile preferences: student type (school/university), grade or course, country, interface language, answer length.</li>
-    <li>Your AI API keys (Groq, Anthropic) — entered by you and used to call those providers directly from the app.</li>
-    <li>Your question/answer history (up to 100 most recent entries) — including the photo URI, recognized question text, and AI-generated answer. You can clear this history at any time from the History tab.</li>
-    <li>Daily request counters per AI provider (used to display remaining capacity).</li>
-    <li>An anonymous moving average of token usage per request (used to estimate remaining capacity). No content is stored — only numeric counts.</li>
-  </ul>
-  <p>You can delete all of this data at any time by tapping <em>"Clear history"</em> in the History tab, by uninstalling the app, or by tapping <em>"Reset all"</em> in Settings.</p>
+<h2>2. Data we process on our backend</h2>
+<table>
+  <tr><th>Data</th><th>Purpose</th><th>Retention</th></tr>
+  <tr><td>Random device UUID (<code>aitutor:deviceId:v1</code>, generated on-device)</td><td>Identify your device for free-tier rate limiting and balance tracking.</td><td>Until you tap "Delete account" or uninstall + clear data.</td></tr>
+  <tr><td>Free-tier usage flag (<code>free_used_date</code>)</td><td>Enforce 1 free question per UTC day.</td><td>Resets daily; deleted with account.</td></tr>
+  <tr><td>Paid-credit balance</td><td>Track how many questions you have available.</td><td>Until consumed or account deleted.</td></tr>
+  <tr><td>Purchase history (Apple/Google transaction IDs, product IDs, environment, raw receipt)</td><td>Verify purchases server-side, prevent replay, handle refunds.</td><td>Retained for accounting (typically 7 years per local law). Anonymised when account deleted.</td></tr>
+  <tr><td>Photos of homework questions</td><td>Forward to AI provider for analysis. Resized to 1024 px JPEG before transit. <strong>Not persisted on our servers</strong> — discarded after the response is returned.</td><td>0 seconds on our backend.</td></tr>
+  <tr><td>OCR-extracted question text + AI-generated answer</td><td>Returned to your app and stored locally only. <strong>Not persisted on our backend</strong>.</td><td>0 seconds on our backend; on your device until you clear history or delete the app.</td></tr>
+  <tr><td>Content reports (the answer text + your reason + optional note)</td><td>Moderation review of harmful AI output (Google Play AI policy + Apple 1.4.1 compliance).</td><td>Retained 12 months for safety review, then deleted; deleted with account.</td></tr>
+  <tr><td>Crash logs (Vercel platform-level)</td><td>Diagnose backend failures.</td><td>Vercel default retention (typically 30 days).</td></tr>
+</table>
 
-  <h2>3. Data Sent to Third-Party AI Providers</h2>
-  <p>When you tap "Explain", the photo you took (resized to 1024 px JPEG) and the recognized question text are sent <strong>directly from the app to the AI provider you have configured</strong> using your own API key:</p>
-  <ul>
-    <li><strong>Groq, Inc.</strong> — when a Groq key is set. Photo is processed by Llama-4-Scout (vision OCR) and the extracted text is then processed by Llama-3.3-70B (reasoning). Privacy policy: <a href="https://groq.com/privacy-policy/">groq.com/privacy-policy</a>.</li>
-    <li><strong>Anthropic PBC</strong> — when an Anthropic key is set. Photo and reasoning are processed by Claude Sonnet 4.6. Privacy policy: <a href="https://www.anthropic.com/legal/privacy">anthropic.com/legal/privacy</a>.</li>
-  </ul>
-  <p>The data sent to these providers is governed by their respective privacy policies and the API terms tied to your own account with them. We do not see, intercept, or store the content of these requests.</p>
+<h2>3. Data we DO NOT collect</h2>
+<ul>
+  <li>Your name, email address, phone number — there is no account to create. Identification is by random device UUID.</li>
+  <li>Your precise or approximate location.</li>
+  <li>Audio, contacts, calendar.</li>
+  <li>Health, financial, or biometric data.</li>
+  <li>Web browsing history.</li>
+</ul>
 
-  <h2>4. What We Do NOT Collect</h2>
-  <ul>
-    <li>No analytics or tracking SDKs (no Firebase Analytics, Google Analytics, Mixpanel, AppsFlyer, etc.).</li>
-    <li>No advertising or advertising identifiers.</li>
-    <li>No crash reporting that contains personal data.</li>
-    <li>No location data.</li>
-    <li>No microphone access — the app does not record audio.</li>
-    <li>No contacts, calendar, or any other device data outside the photos you explicitly select.</li>
-    <li>No account creation — there is no login, no user account, and no cross-device sync.</li>
-  </ul>
+<h2>4. Sub-processors</h2>
+<p>When you use the Free or Paid tier, the photo and the question text are sent to one of:</p>
+<ul>
+  <li><strong>Anthropic PBC</strong> (USA) — <a href="https://www.anthropic.com/legal/privacy">privacy policy</a>. Vision + reasoning model.</li>
+  <li><strong>Groq Inc.</strong> (USA) — <a href="https://groq.com/privacy-policy/">privacy policy</a>. Faster vision + reasoning chain.</li>
+</ul>
+<p>Receipts are verified with:</p>
+<ul>
+  <li><strong>Apple Inc.</strong> (USA) via App Store Server API.</li>
+  <li><strong>Google LLC</strong> (USA) via Google Play Developer API.</li>
+</ul>
+<p>Our backend itself runs on:</p>
+<ul>
+  <li><strong>Vercel Inc.</strong> (USA, EU region <code>fra1</code>) — serverless functions.</li>
+  <li><strong>Supabase Inc.</strong> (EU region) — Postgres database, AES-256 at rest.</li>
+</ul>
+<p>In Advanced (BYO) mode, requests are sent directly from your device to your chosen AI provider. Our backend is not involved and we have no record of those requests.</p>
 
-  <h2>5. Camera and Photo Library Permissions</h2>
-  <p>The app requests permission to use your camera and/or photo library only so you can capture or select a photo of the educational task you want explained. Photos are processed in memory, resized to 1024 px JPEG, sent to the AI provider you configured, and discarded after the response is received. The original photo is never copied to our servers (we have none).</p>
+<h2>5. Camera and photo permissions</h2>
+<p>We request camera and photo library access strictly to capture an image of your homework question. The image is resized to 1024 px JPEG before any transmission. In Free / Paid mode it is sent to our backend → forwarded to the AI provider → discarded once the response is returned. In Advanced (BYO) mode it is sent directly from your device to your AI provider. We never train models on your photos.</p>
 
-  <h2>6. Children's Privacy</h2>
-  <p>The app is rated 12+ on the App Store and Teen on Google Play because AI-generated content may occasionally produce inaccurate or age-inappropriate output. The app is intended for students aged 13 and older. We do not knowingly collect any information from children under 13.</p>
+<h2>6. AI-generated content</h2>
+<p>Answers are produced by third-party large language models (Anthropic Claude, Groq Llama, or your own provider in BYO mode). They may occasionally be inaccurate, biased, or off-topic. Please verify critical information independently. Each answer in the app has a <em>Report</em> action — tap the flag icon to send the answer + your reason to our moderation queue.</p>
 
-  <h2>7. Data Security</h2>
-  <p>Your API keys and history are stored on your device using the operating system's standard local storage. All network requests to AI providers use HTTPS / TLS encryption. Because we do not operate any server, there is no central database that could be breached.</p>
+<h2>7. In-app purchases</h2>
+<p>Consumable packs are processed by Apple App Store or Google Play. We never see your payment method or credit card. After purchase, we receive only the transaction ID, product ID, environment (Sandbox / Production), and raw signed receipt — used to verify the transaction is genuine. Refund and cancellation requests must be made through Apple Support or Google Play; if the platform sends us a refund notification, we automatically reduce your credit balance accordingly.</p>
 
-  <h2>8. Your Rights (GDPR / CCPA)</h2>
-  <p>Because we do not collect or process your personal data, there is no data on our side that you could request, correct, or delete. All data is in your direct control on your device.</p>
-  <p>For data held by the AI providers (Groq, Anthropic), you can exercise your rights directly with them via your own account.</p>
+<h2>8. Account deletion</h2>
+<p>You can delete your data at any time:</p>
+<ul>
+  <li><strong>In-app:</strong> Settings → "Delete account" → confirm twice. Removes your <code>users</code>, <code>credits</code>, <code>content_reports</code> rows immediately; anonymises <code>purchases</code> rows (sets <code>user_id</code> = NULL but retains the row for accounting). The app then resets to onboarding with a fresh random device UUID.</li>
+  <li><strong>Web:</strong> follow the instructions at <a href="./delete-account.html">delete-account.html</a> to email <a href="mailto:platmargo@gmail.com">platmargo@gmail.com</a> with a deletion request.</li>
+</ul>
+<p>Deletion is irreversible. Anonymised purchase records may be retained for up to 7 years to comply with tax and accounting law.</p>
 
-  <h2>9. Changes to This Policy</h2>
-  <p>If this policy changes, the updated version will be posted at <a href="https://alona-zubenko.github.io/privacy-policy/aitutor/">https://alona-zubenko.github.io/privacy-policy/aitutor/</a> with a new "Last updated" date.</p>
+<h2>9. Security</h2>
+<ul>
+  <li>All data in transit uses HTTPS / TLS 1.2+.</li>
+  <li>Supabase Postgres encrypts data at rest (AES-256).</li>
+  <li>BYO API keys are stored on your device using <strong>iOS Keychain</strong> / <strong>Android Keystore</strong> (via <code>expo-secure-store</code>) — encrypted, not extractable by other apps, not included in iCloud Backup or Android allowBackup bundle.</li>
+  <li>We do not use third-party analytics SDKs.</li>
+</ul>
 
-  <h2>10. Contact</h2>
-  <p>Questions about this Privacy Policy: <a href="mailto:platmargo@gmail.com">platmargo@gmail.com</a></p>
+<h2>10. Your rights (GDPR / CCPA)</h2>
+<p>Even though we hold very little personal data (a random UUID, balance, optional reports), you have the right to:</p>
+<ul>
+  <li><strong>Access</strong> — email us your device UUID and we will return all data we hold for it within 30 days.</li>
+  <li><strong>Erasure</strong> — use the in-app "Delete account" flow, or email us with your device UUID. Anonymised purchase records may be retained as noted above.</li>
+  <li><strong>Object</strong> — to processing for fraud prevention; this means we cannot continue to provide the Free / Paid tiers, but Advanced (BYO) mode remains available.</li>
+  <li><strong>Lodge a complaint</strong> — with your local Data Protection Authority. For Ukraine: <a href="https://www.ombudsman.gov.ua/">Ombudsman</a>. For EU: your national authority.</li>
+</ul>
+<p>Email: <a href="mailto:platmargo@gmail.com">platmargo@gmail.com</a></p>
+
+<h2>11. Children's privacy</h2>
+<p>AITutor is rated 12+ / Teen. Under-13 children should use the app under parental supervision in jurisdictions where COPPA-equivalent rules apply. We do not knowingly collect data from children under 13. If you believe a child under 13 has provided us with data, contact us and we will delete it.</p>
+
+<h2>12. Changes to this policy</h2>
+<p>We will update this page if our practices change. The "Effective" date at the top reflects the latest revision.</p>
+
+<h2>Changelog</h2>
+<ul>
+  <li><strong>2026-04-28</strong> — added backend (Vercel + Supabase EU), in-app purchases, server-side receipt validation, content reporting, account deletion endpoint, Keystore/Keychain storage for BYO keys.</li>
+  <li><strong>Prior</strong> — BYO-only direct-API model.</li>
+</ul>
+
+<p style="margin-top: 32px; font-size: 13px; color: #6B7299;">Source: <a href="https://github.com/alona-zubenko/privacy-policy/tree/main/aitutor">github.com/alona-zubenko/privacy-policy</a></p>
+
 </body>
 </html>

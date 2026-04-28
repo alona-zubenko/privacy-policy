@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AITutor — Delete your account and data</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; max-width: 720px; margin: 32px auto; padding: 0 20px; color: #1a1b47; line-height: 1.55; }
+  h1 { font-size: 28px; margin-bottom: 4px; }
+  h2 { font-size: 18px; margin-top: 28px; }
+  p, li { font-size: 15px; }
+  code { background: #F2F0FA; padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+  .box { background: #EFEAFF; border-left: 4px solid #5028D8; padding: 14px 18px; border-radius: 6px; margin: 16px 0; }
+  a { color: #5028D8; }
+</style>
+</head>
+<body>
+
+<h1>Delete your AITutor account and data</h1>
+<p>AITutor is account-less by design — there is no email, password, or social login. Your data is identified by a random UUID generated on your device the first time you launch the app (<code>aitutor:deviceId:v1</code>).</p>
+
+<h2>Option 1: Delete in-app (recommended)</h2>
+<ol>
+  <li>Open the AITutor app.</li>
+  <li>Go to <strong>Settings</strong> tab.</li>
+  <li>Scroll to the bottom and tap <strong>Delete account</strong>.</li>
+  <li>Confirm twice (Apple/Google review require a two-step confirmation).</li>
+  <li>The app immediately calls our delete-account endpoint, wipes local data, generates a fresh device UUID, and returns to onboarding.</li>
+</ol>
+
+<div class="box">
+  <strong>What gets deleted:</strong> your device UUID, paid credit balance, free-tier usage flag, content reports.<br />
+  <strong>What is retained anonymously:</strong> purchase rows in our accounting log (Apple/Google transaction IDs only, no link to you). Retained for up to 7 years to comply with tax and accounting law.<br />
+  <strong>What never existed:</strong> we never collected your name, email, location, contacts, photos library, or browsing history. There is nothing else to delete.
+</div>
+
+<h2>Option 2: Email request</h2>
+<p>If you cannot access the app (for example, you uninstalled before deleting):</p>
+<ol>
+  <li>Email <a href="mailto:platmargo@gmail.com?subject=AITutor%20account%20deletion%20request">platmargo@gmail.com</a> with subject "<em>AITutor account deletion request</em>".</li>
+  <li>If you still know your device UUID, include it. Otherwise describe the approximate purchase date — we can find recent transactions by your Apple/Google email.</li>
+  <li>We will confirm receipt within 7 days and complete the deletion within 30 days, in compliance with GDPR Article 17.</li>
+</ol>
+
+<h2>Refunds for unused credits</h2>
+<p>Apple App Store and Google Play handle refund requests directly. To request a refund:</p>
+<ul>
+  <li><strong>iOS:</strong> <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a></li>
+  <li><strong>Android:</strong> <a href="https://play.google.com/store/account/orderhistory">Play Store → Order history → Request a refund</a></li>
+</ul>
+<p>If the platform issues a refund, our backend automatically reduces your credit balance to reflect the refund.</p>
+
+<h2>Questions</h2>
+<p>Email <a href="mailto:platmargo@gmail.com">platmargo@gmail.com</a>. We typically respond within 2–3 business days.</p>
+
+<p style="margin-top: 40px; font-size: 13px; color: #6B7299;">Last updated: 28 April 2026 · <a href="./index.html">← back to Privacy Policy</a></p>
+
+</body>
+</html>
