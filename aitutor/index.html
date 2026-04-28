@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — AITutor</title>
+  <style>
+    body { font-family: -apple-system, sans-serif; max-width: 680px; margin: 40px auto; padding: 0 20px; color: #222; line-height: 1.7; }
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.1rem; margin-top: 2rem; }
+    p  { margin: 0.5rem 0; }
+    .nav { font-size: 0.9rem; color: #666; }
+    .nav a { color: #0070f3; }
+  </style>
+</head>
+<body>
+  <p class="nav"><a href="../">← All policies</a> · <a href="./terms.html">Terms of Service</a></p>
+
+  <h1>Privacy Policy</h1>
+  <p><strong>App:</strong> AITutor<br>
+     <strong>Developer:</strong> AZ Studio (Alona Zubenko)<br>
+     <strong>Contact:</strong> <a href="mailto:platmargo@gmail.com">platmargo@gmail.com</a><br>
+     <strong>Last updated:</strong> April 28, 2026</p>
+
+  <h2>1. Summary</h2>
+  <p>AITutor is a study helper that lets you photograph an educational task and receive a step-by-step explanation. The app does <strong>not</strong> have a backend server. AI processing is performed by third-party AI providers (Groq and/or Anthropic) using API keys <strong>that you supply yourself</strong>. We do not collect, store, or transmit any of your data to our own servers.</p>
+
+  <h2>2. Data Stored Locally on Your Device</h2>
+  <p>The following information is stored on your device only (using AsyncStorage / iOS and Android secure local storage) and never uploaded to any server controlled by us:</p>
+  <ul>
+    <li>Your profile preferences: student type (school/university), grade or course, country, interface language, answer length.</li>
+    <li>Your AI API keys (Groq, Anthropic) — entered by you and used to call those providers directly from the app.</li>
+    <li>Your question/answer history (up to 100 most recent entries) — including the photo URI, recognized question text, and AI-generated answer. You can clear this history at any time from the History tab.</li>
+    <li>Daily request counters per AI provider (used to display remaining capacity).</li>
+    <li>An anonymous moving average of token usage per request (used to estimate remaining capacity). No content is stored — only numeric counts.</li>
+  </ul>
+  <p>You can delete all of this data at any time by tapping <em>"Clear history"</em> in the History tab, by uninstalling the app, or by tapping <em>"Reset all"</em> in Settings.</p>
+
+  <h2>3. Data Sent to Third-Party AI Providers</h2>
+  <p>When you tap "Explain", the photo you took (resized to 1024 px JPEG) and the recognized question text are sent <strong>directly from the app to the AI provider you have configured</strong> using your own API key:</p>
+  <ul>
+    <li><strong>Groq, Inc.</strong> — when a Groq key is set. Photo is processed by Llama-4-Scout (vision OCR) and the extracted text is then processed by Llama-3.3-70B (reasoning). Privacy policy: <a href="https://groq.com/privacy-policy/">groq.com/privacy-policy</a>.</li>
+    <li><strong>Anthropic PBC</strong> — when an Anthropic key is set. Photo and reasoning are processed by Claude Sonnet 4.6. Privacy policy: <a href="https://www.anthropic.com/legal/privacy">anthropic.com/legal/privacy</a>.</li>
+  </ul>
+  <p>The data sent to these providers is governed by their respective privacy policies and the API terms tied to your own account with them. We do not see, intercept, or store the content of these requests.</p>
+
+  <h2>4. What We Do NOT Collect</h2>
+  <ul>
+    <li>No analytics or tracking SDKs (no Firebase Analytics, Google Analytics, Mixpanel, AppsFlyer, etc.).</li>
+    <li>No advertising or advertising identifiers.</li>
+    <li>No crash reporting that contains personal data.</li>
+    <li>No location data.</li>
+    <li>No microphone access — the app does not record audio.</li>
+    <li>No contacts, calendar, or any other device data outside the photos you explicitly select.</li>
+    <li>No account creation — there is no login, no user account, and no cross-device sync.</li>
+  </ul>
+
+  <h2>5. Camera and Photo Library Permissions</h2>
+  <p>The app requests permission to use your camera and/or photo library only so you can capture or select a photo of the educational task you want explained. Photos are processed in memory, resized to 1024 px JPEG, sent to the AI provider you configured, and discarded after the response is received. The original photo is never copied to our servers (we have none).</p>
+
+  <h2>6. Children's Privacy</h2>
+  <p>The app is rated 12+ on the App Store and Teen on Google Play because AI-generated content may occasionally produce inaccurate or age-inappropriate output. The app is intended for students aged 13 and older. We do not knowingly collect any information from children under 13.</p>
+
+  <h2>7. Data Security</h2>
+  <p>Your API keys and history are stored on your device using the operating system's standard local storage. All network requests to AI providers use HTTPS / TLS encryption. Because we do not operate any server, there is no central database that could be breached.</p>
+
+  <h2>8. Your Rights (GDPR / CCPA)</h2>
+  <p>Because we do not collect or process your personal data, there is no data on our side that you could request, correct, or delete. All data is in your direct control on your device.</p>
+  <p>For data held by the AI providers (Groq, Anthropic), you can exercise your rights directly with them via your own account.</p>
+
+  <h2>9. Changes to This Policy</h2>
+  <p>If this policy changes, the updated version will be posted at <a href="https://alona-zubenko.github.io/privacy-policy/aitutor/">https://alona-zubenko.github.io/privacy-policy/aitutor/</a> with a new "Last updated" date.</p>
+
+  <h2>10. Contact</h2>
+  <p>Questions about this Privacy Policy: <a href="mailto:platmargo@gmail.com">platmargo@gmail.com</a></p>
+</body>
+</html>
